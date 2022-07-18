@@ -996,6 +996,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
 	qcom-ipq4019-ap.dk07.1-c2.dtb \
 	qcom-ipq8064-ap148.dtb \
 	qcom-ipq8064-rb3011.dtb \
+	qcom-msm8226-lg-madai.dtb \
 	qcom-msm8226-nokia-dempsey.dtb \
 	qcom-msm8226-nokia-makepeace.dtb \
 	qcom-msm8226-nokia-moneypenny.dtb \
