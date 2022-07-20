@@ -21,8 +21,6 @@ static u32 simplefb_x, simplefb_y;
 static u64 fb_base;
 static void *simplefb_fb;
 
-struct screen_info screen_info;
-
 static int __init simplefb_earlycon_remap_fb(void)
 {
 	/* bail if there is no bootconsole or it has been disabled already */
@@ -52,7 +50,7 @@ static __ref void *simplefb_earlycon_map(unsigned long start, unsigned long len)
 		return simplefb_fb + start;
 
 	fb_prot = PAGE_KERNEL;
-	return early_memremap_prot(fb_base + start, len, pgprot_val(fb_prot));
+	return memremap(fb_base + start, len, MEMREMAP_WB);
 }
 
 static __ref void simplefb_earlycon_unmap(void *addr, unsigned long len)
@@ -60,7 +58,7 @@ static __ref void simplefb_earlycon_unmap(void *addr, unsigned long len)
 	if (simplefb_fb)
 		return;
 
-	early_memunmap(addr, len);
+	memunmap(addr);
 }
 
 static void simplefb_earlycon_clear_scanline(unsigned int y)
